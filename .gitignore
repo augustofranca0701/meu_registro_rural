@@ -1,7 +1,13 @@
-*.pyc
-__pycache__/
+# venv
+.venv/
+venv/
+
+# SQLite
 db.sqlite3
-.env
-/media/
-/staticfiles/
-/venv/
+
+# Django
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
