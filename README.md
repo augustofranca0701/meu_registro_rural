@@ -52,8 +52,8 @@ Criar um painel funcional e visual para usuários simulados, com foco em clareza
 
 2. Crie e ative um ambiente virtual:
   ```bash
-  python -m venv venv
-  source venv/bin/activate  # ou venv\Scripts\activate no Windows
+  python -m venv venv    #para criar
+  venv\Scripts\activate  #para ativar
 ```
 
 3. Instale as dependências:
