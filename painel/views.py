@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.db.models import Q
 from .models import Imovel, AtividadeUsuario, EventoFundiario
 
 # Overview (painel principal)
 def painel_overview(request):
+    # Busca imóveis (apenas os campos que a view/template usam)
     imoveis = Imovel.objects.all()
+
     total = imoveis.count()
 
+    # Se seus booleanos jamais são NULL, isso é suficiente
     completos = imoveis.filter(
         tem_ccir=True,
         tem_georreferenciamento=True,
@@ -25,12 +29,16 @@ def painel_overview(request):
 
     # Atualização via POST
     if request.method == 'POST':
-        nome_novo = request.POST.get('nome')
-        email_novo = request.POST.get('email')
-        request.session['nome'] = nome_novo
-        request.session['email'] = email_novo
+        nome_novo = (request.POST.get('nome') or '').strip()
+        email_novo = (request.POST.get('email') or '').strip()
+        if nome_novo:
+            request.session['nome'] = nome_novo
+        if email_novo:
+            request.session['email'] = email_novo
         messages.success(request, 'Dados atualizados com sucesso!')
+        # Se você NÃO usa namespace nas URLs, mantenha assim:
         return redirect('painel_overview')
+        # Se usa namespace, troque por: return redirect('painel:painel_overview')
 
     atividades = AtividadeUsuario.objects.order_by('-data')[:10]
 
@@ -48,41 +56,53 @@ def painel_overview(request):
     }
     return render(request, 'painel/overview.html', context)
 
+
 # Lista de imóveis
 def lista_imoveis(request):
     imoveis = Imovel.objects.all()
     return render(request, 'painel/lista_imoveis.html', {'imoveis': imoveis})
 
+
 # Detalhes (com eventos fundiários)
 def detalhes_imovel(request, id):
     imovel = get_object_or_404(Imovel, pk=id)
-    eventos = imovel.eventos.order_by('-data')
+    # Se o related_name='eventos' EXISTE no modelo:
+    try:
+        eventos = imovel.eventos.order_by('-data')
+    except AttributeError:
+        # fallback se não houver related_name configurado
+        eventos = EventoFundiario.objects.filter(imovel=imovel).order_by('-data')
+
     return render(request, 'painel/detalhes_imovel.html', {'imovel': imovel, 'eventos': eventos})
+
 
 # Página da equipe
 def equipe_view(request):
     return render(request, 'painel/equipe.html')
 
+
 # Relatórios (histórico de compras)
 def relatorios_view(request):
     return render(request, 'painel/relatorios.html')
 
+
 # Modo simulação
 def modo_simulacao(request):
     return render(request, 'painel/modo_simulacao.html')
+
 
 # Comparador de imóveis
 def comparador_view(request):
     imoveis = Imovel.objects.all()
     imovel1 = imovel2 = None
 
-    if request.method == 'GET':
-        id1 = request.GET.get('imovel1')
-        id2 = request.GET.get('imovel2')
+    # Pode aceitar GET (atual) e também POST se você criar um form simples
+    id1 = request.GET.get('imovel1')
+    id2 = request.GET.get('imovel2')
 
-        if id1 and id2 and id1 != id2:
-            imovel1 = Imovel.objects.filter(pk=id1).first()
-            imovel2 = Imovel.objects.filter(pk=id2).first()
+    if id1 and id2 and id1 != id2:
+        imovel1 = Imovel.objects.filter(pk=id1).first()
+        imovel2 = Imovel.objects.filter(pk=id2).first()
 
     context = {
         'imoveis': imoveis,
