@@ -47,13 +47,17 @@ Criar um painel funcional e visual para usuários simulados, com foco em clareza
 1. Clone o repositório:
   ```bash
    git clone https://github.com/augustofranca0701/meu_registro_rural
-   cd meu-registro-rural
+   cd meu_registro_rural
   ```
 
 2. Crie e ative um ambiente virtual:
   ```bash
   python -m venv venv    #para criar
   venv\Scripts\activate  #para ativar
+
+  #py -3 -m venv .venv
+  #.\.venv\Scripts\Activate.ps1
+
 ```
 
 3. Instale as dependências:
@@ -61,11 +65,21 @@ Criar um painel funcional e visual para usuários simulados, com foco em clareza
    pip install -r requirements.txt
 ```
 
-4. Rode o servidor:
-```bash
-  python manage.py runserver
+4. Aplique as migrações do banco:
+  ```bash
+   python manage.py migrate
 ```
 
+5. Carregue os dados de exemplo:
+```bash
+   python manage.py loaddata fixtures_painel.json
+```
+
+6. Rode o servidor:
+  ```bash
+   python manage.py runserver
+```
+7. Acesse em: http://127.0.0.1:8000
 ---
 
 ## 🔮 Próximos Passos (Visão Futurista)
