@@ -46,7 +46,7 @@ Criar um painel funcional e visual para usuários simulados, com foco em clareza
 
 1. Clone o repositório:
   ```bash
-   git clone https://github.com/seu-usuario/meu-registro-rural.git
+   git clone https://github.com/seu-usuario/meu-registro-rural
    cd meu-registro-rural
   ```
 
