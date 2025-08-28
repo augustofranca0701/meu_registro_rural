@@ -1,0 +1,95 @@
+[
+  {
+    "model": "painel.imovel",
+    "fields": {
+      "nome": "Sitio Santa Luzia",
+      "codigo_car": "CAR123",
+      "area_ha": "12.50",
+      "tem_ccir": true,
+      "tem_georreferenciamento": true,
+      "tem_reserva_legal": false,
+      "latitude": -23.5505,
+      "longitude": -46.6333
+    }
+  },
+  {
+    "model": "painel.imovel",
+    "fields": {
+      "nome": "Fazenda Rio Claro",
+      "codigo_car": "CAR456",
+      "area_ha": "200.00",
+      "tem_ccir": false,
+      "tem_georreferenciamento": true,
+      "tem_reserva_legal": true,
+      "latitude": -22.9035,
+      "longitude": -47.0608
+    }
+  },
+  {
+    "model": "painel.imovel",
+    "fields": {
+      "nome": "Chacara Boa Esperanca",
+      "codigo_car": "CAR789",
+      "area_ha": "85.30",
+      "tem_ccir": true,
+      "tem_georreferenciamento": false,
+      "tem_reserva_legal": true,
+      "latitude": -19.9189,
+      "longitude": -43.9386
+    }
+  },
+  {
+    "model": "painel.imovel",
+    "fields": {
+      "nome": "Fazenda Lago Azul",
+      "codigo_car": "CAR321",
+      "area_ha": "350.75",
+      "tem_ccir": true,
+      "tem_georreferenciamento": true,
+      "tem_reserva_legal": true,
+      "latitude": -27.5954,
+      "longitude": -48.5480
+    }
+  },
+
+  {
+    "model": "painel.atividadeusuario",
+    "fields": {
+      "tipo": "relatorio",
+      "descricao": "Gerou relatorio de CAR",
+      "data": "2025-08-28T19:53:12Z"
+    }
+  },
+  {
+    "model": "painel.atividadeusuario",
+    "fields": {
+      "tipo": "visualizou",
+      "descricao": "Visualizou dados do imovel Sitio Santa Luzia",
+      "data": "2025-08-28T20:10:05Z"
+    }
+  },
+  {
+    "model": "painel.atividadeusuario",
+    "fields": {
+      "tipo": "cpf",
+      "descricao": "Consultou CPF/CNPJ 123.456.789-00",
+      "data": "2025-08-28T20:15:45Z"
+    }
+  },
+  {
+    "model": "painel.atividadeusuario",
+    "fields": {
+      "tipo": "membro",
+      "descricao": "Adicionou Maria Oliveira a equipe",
+      "data": "2025-08-28T20:25:30Z"
+    }
+  },
+  {
+    "model": "painel.atividadeusuario",
+    "fields": {
+      "tipo": "relatorio",
+      "descricao": "Gerou relatorio completo de CCIR",
+      "data": "2025-08-28T20:40:00Z"
+    }
+  }
+]

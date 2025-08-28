@@ -72,7 +72,7 @@ Criar um painel funcional e visual para usuários simulados, com foco em clareza
 
 5. Carregue os dados de exemplo:
 ```bash
-   python manage.py loaddata fixtures_painel.json
+   python manage.py loaddata fixtures_painel_utf8.json
 ```
 
 6. Rode o servidor:
